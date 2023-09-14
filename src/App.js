@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  useMsal,
+  AuthenticatedTemplate,
+  UnauthenticatedTemplate,
+} from "@azure/msal-react";
+import NavBar from './NavBar'
+import WelcomeUser from './WelcomeUser';
+
+
+function signInClickHandler(instance) {
+  instance.loginRedirect();
+}
+
+function SignInButton() {
+  const { instance } = useMsal();
+
+  return <button onClick={() => signInClickHandler(instance)}>Sign In - Microsoft</button>;
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AuthenticatedTemplate>
+        <WelcomeUser />
+      </AuthenticatedTemplate>
+      <UnauthenticatedTemplate>
+        <p>Sign in with a personal Microsoft Account</p>
+        <SignInButton />
+      </UnauthenticatedTemplate>
+    </>
   );
 }
 
