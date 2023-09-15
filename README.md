@@ -26,5 +26,5 @@ Demo application that uses Microsoft Graph Api to access OneDrive
 ![Download Screenshot](download.png)
 
 - Monitoring Shared Resources
-- 
+  
 ![SharingInfo Screenshot](sharing.png)
